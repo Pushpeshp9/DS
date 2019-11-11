@@ -1,43 +1,55 @@
- #include <stdio.h>
-    #include <string.h>
-    void main()
+#include <stdio.h>
+ 
+int main()
+{
+  int m, n, p, q, c, d, k, sum = 0;
+  int first[10][10], second[10][10], multiply[10][10];
+ 
+  printf("Enter the number of rows and columns of first matrix\n");
+  scanf("%d%d", &m, &n);
+  printf("Enter the elements of first matrix\n");
+ 
+  for (  c = 0 ; c < m ; c++ )
+    for ( d = 0 ; d < n ; d++ )
+      scanf("%d", &first[c][d]);
+ 
+  printf("Enter the number of rows and columns of second matrix\n");
+  scanf("%d%d", &p, &q);
+ 
+  if ( n != p )
+    printf("Matrices with entered orders can't be multiplied with each other.\n");
+  else
+  {
+    printf("Enter the elements of second matrix\n");
+ 
+    for ( c = 0 ; c < p ; c++ )
+      for ( d = 0 ; d < q ; d++ )
+        scanf("%d", &second[c][d]);
+ 
+    for ( c = 0 ; c < m ; c++ )
     {
- 
-        char name[10][8], tname[10][8], temp[8];
-        int i, j, n;
- 
-        printf("Enter the value of n \n");
-        scanf("%d", &n);
-        printf("Enter %d names n \n", n);
- 
-        for (i = 0; i < n; i++) 
+      for ( d = 0 ; d < q ; d++ )
+      {
+        for ( k = 0 ; k < p ; k++ )
         {
-            scanf("%s", name[i]);
-            strcpy(tname[i], name[i]);
+          sum = sum + first[c][k]*second[k][d];
         }
  
-        for (i = 0; i < n - 1 ; i++)
-        {
-            for (j = i + 1; j < n; j++)
-            {
-                if (strcmp(name[i], name[j]) > 0) 
-                {
-                    strcpy(temp, name[i]);
-                    strcpy(name[i], name[j]);
-                    strcpy(name[j], temp);
-                }
-            }
-        }
- 
-        printf("\n----------------------------------------\n");
-        printf("Input NamestSorted names\n");
-        printf("------------------------------------------\n");
- 
-        for (i = 0; i < n; i++) 
-        {
-            printf("%s\t\t%s\n", tname[i], name[i]);
-        }
- 
-        printf("------------------------------------------\n");
- 
+        multiply[c][d] = sum;
+        sum = 0;
+      }
     }
+ 
+    printf("Product of entered matrices:-\n");
+ 
+    for ( c = 0 ; c < m ; c++ )
+    {
+      for ( d = 0 ; d < q ; d++ )
+        printf("%d\t", multiply[c][d]);
+ 
+      printf("\n");
+    }
+  }
+ 
+  return 0;
+}

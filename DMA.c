@@ -1,47 +1,27 @@
-#include <stdio.h>
-    void main ()
-    {
- 
-        static int array[10][10];
-        int i, j, m, n, a = 0, sum = 0;
- 
-        printf("Enetr the order of the matix \n");
-        scanf("%d %d", &m, &n);
- 
-        if (m == n ) 
-        {
- 
-            printf("Enter the co-efficients of the matrix\n");
-            for (i = 0; i < m; ++i)
-            {
-                for (j = 0; j < n; ++j)
-                {
-                    scanf("%d", &array[i][j]);
-                }
-            }
- 
-            printf("The given matrix is \n");
-            for (i = 0; i < m; ++i) 
-            {
-                for (j = 0; j < n; ++j)
-                {
-                    printf(" %d", array[i][j]);
-                }
-                printf("\n");
-            }
- 
-            for (i = 0; i < m; ++i) 
-            {
-                sum = sum + array[i][i];
-                a = a + array[i][m - i - 1];
-            }
- 
-            printf("\nThe sum of the main diagonal elements is = %d\n", sum);
-            printf("The sum of the off diagonal elements is   = %d\n", a);
- 
-        }
- 
-        else
-            printf("The given order is not square matrix\n");
- 
-    }
+#include<stdio.h>
+#include<malloc.h>>
+int main(){
+  //1
+  int i;
+  int count;
+  int *arr;
+  int sum = 0;
+  //2
+  printf("Enter the total number of elements you want to enter : ");
+  scanf("%d",&count);
+  //3
+  arr = (int *)malloc(count * sizeof(int));
+  //4
+  for(i = 0;i<count;i++){
+    //5
+    printf("Enter element %d : ",(i+1));
+    scanf("%d",arr+i);
+    //6
+    sum += *(arr+i);
+  }
+  //7
+  printf("sum is %d \n",sum);
+  //8
+  free(arr);
+  return 0;
+}
